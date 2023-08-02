@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: car-mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: cardb
+      MARIADB_USER: carapp
+      MARIADB_PASSWORD: carapp9700
+      MARIADB_ROOT_PASSWORD: caradm9700
+      TZ: Asiz:Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --character-set-client-handshake=FALSE
+    ports:
+      - 9700:3306
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+    networks:
+      car-net:
+        aliases:
+          - car-mariadb
+
+networks:
+  car-net:
+    driver: bridge

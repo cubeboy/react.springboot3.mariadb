@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    group:
+      default: "common,mariadb"
+      test: "common,h2db"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "common"
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+        connection:
+          charSet: UTF-8
+        globally_quoted_identifiers: true
+        globally_quoted_identifiers_skip_column_definitions: true
+
+logging:
+  level:
+    root: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "h2db"
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "mariadb"
+
+  datasource:
+    url: jdbc:mariadb://localhost:9700/cardb
+    username: carapp
+    password: carapp9700
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    database: MYSQL
+    open-in-view: false
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+      format-sql: true
