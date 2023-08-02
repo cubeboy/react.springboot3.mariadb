@@ -1,16 +1,20 @@
 package com.jinnara.cardatabase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Owner {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long ownerId;
   private String firstname, lastname;
 
+  @JsonIgnore
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
   private List<Car> cars;
 
