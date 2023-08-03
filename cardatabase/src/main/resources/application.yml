@@ -23,6 +23,9 @@ spring:
         globally_quoted_identifiers: true
         globally_quoted_identifiers_skip_column_definitions: true
 
+server:
+  port: 5000
+
 logging:
   level:
     root: INFO
@@ -56,5 +59,6 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
+#      ddl-auto: create-drop
       format-sql: true
