@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Stack, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { TextField, Button, Stack, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 export default function AddCar(props) {
   const [open, setOpen]  = useState(false);
@@ -34,11 +34,13 @@ export default function AddCar(props) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Car</DialogTitle>
         <DialogContent>
-          <input placeholder="Brand" name="brand" value={car.brand} onChange={handleChange} />
-          <input placeholder="Model" name="model" value={car.model} onChange={handleChange} />
-          <input placeholder="Color" name="color" value={car.color} onChange={handleChange} />
-          <input placeholder="Year" name="year" value={car.year} onChange={handleChange} />
-          <input placeholder="Price" name="price" value={car.price} onChange={handleChange} />
+          <Stack spacing={2} mt={2}>
+            <TextField autoFocus placeholder="Brand" variant="standard" name="brand" value={car.brand} onChange={handleChange} />
+            <TextField placeholder="Model" variant="standard" name="model" value={car.model} onChange={handleChange} />
+            <TextField placeholder="Color" variant="standard" name="color" value={car.color} onChange={handleChange} />
+            <TextField placeholder="Year" variant="standard" name="year" value={car.year} onChange={handleChange} />
+            <TextField placeholder="Price" variant="standard" name="price" value={car.price} onChange={handleChange} />
+          </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
