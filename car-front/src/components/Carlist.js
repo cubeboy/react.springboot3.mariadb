@@ -42,30 +42,27 @@ export default function Carlist() {
   const [cars, setCars] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const onDelClick = (id) => {
-    if(window.confirm("정말로 삭제 하시겠습니까?")) {
-      fetch('http://localhost:5000/api/cars/' + id, {method: 'DELETE'})
-        .then(response => {
-          if(response.ok){
-            fetchCars();
-            setOpen(true);
-          }
-        })
-        .catch(error => console.log(error));
+  const getHeaders = () => {
+    const token = sessionStorage.getItem("jwt");
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': token
     }
-  }
+  };
 
   const fetchCars = () => {
-    fetch('http://localhost:5000/api/cars')
+    fetch('/api/cars', {
+      headers: getHeaders()
+    })
       .then(response => response.json())
       .then((data) => setCars(data))
       .catch(error => console.error(error))
   }
 
   const addCar = (car) => {
-    fetch('http://localhost:5000/api/cars', {
+    fetch('/api/cars', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(car)
     })
     .then(response => {
@@ -76,9 +73,9 @@ export default function Carlist() {
   }
 
   const updateCar = (car) => {
-    fetch('http://localhost:5000/api/cars', {
+    fetch('/api/cars', {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(car)
     })
     .then(response => {
@@ -86,6 +83,19 @@ export default function Carlist() {
         fetchCars();
       }
     })
+  }
+
+  const onDelClick = (id) => {
+    if(window.confirm("정말로 삭제 하시겠습니까?")) {
+      fetch(`/api/cars/${id}`, {method: 'DELETE', headers: getHeaders() })
+        .then(response => {
+          if(response.ok){
+            fetchCars();
+            setOpen(true);
+          }
+        })
+        .catch(error => console.log(error));
+    }
   }
 
   useEffect(() => {
