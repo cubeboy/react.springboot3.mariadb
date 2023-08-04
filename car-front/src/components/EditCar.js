@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { IconButton, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Edit } from '@mui/icons-material';
 
 export default function EditCar(props) {
   const [open, setOpen]  = useState(false);
@@ -40,7 +41,7 @@ export default function EditCar(props) {
 
   return (
     <div>
-      <button onClick={handleOpen}>Edit</button>
+      <IconButton onClick={handleOpen}><Edit color="primary" /></IconButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Car</DialogTitle>
         <DialogContent>
@@ -51,8 +52,8 @@ export default function EditCar(props) {
           <input placeholder="Price" name="price" value={car.price} onChange={handleChange} />
         </DialogContent>
         <DialogActions>
-          <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleSave}>Save</button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSave}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

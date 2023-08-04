@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { DataGrid, GridToolbarContainer, GridToolbarExport, gridClasses } from '@mui/x-data-grid';
-import { Snackbar } from '@mui/material';
+import { IconButton, Snackbar } from '@mui/material';
+import { Delete } from '@mui/icons-material';
+
 import AddCar from './AddCar';
 import EditCar from './EditCar'
 
@@ -17,11 +19,12 @@ export default function Carlist() {
     {field: 'brand', headerName: 'brand', width: 200},
     {field: 'model', headerName: 'model', width: 200},
     {field: 'color', headerName: 'color', width: 200},
-    {field: 'year', headerName: 'year', width: 150},
-    {field: 'price', headerName: 'price', width: 150},
+    {field: 'year', headerName: 'year', width: 80},
+    {field: 'price', headerName: 'price', width: 100},
     {
       field: 'edit',
       headerName: '',
+      width: 30,
       sortable: false,
       filterable: false,
       renderCell: row => <EditCar data={row} updateCar={updateCar} />
@@ -29,9 +32,10 @@ export default function Carlist() {
     {
       field: 'delete',
       headerName: '',
+      width: 30,
       sortable: false,
       filterable: false,
-      renderCell: row => <button onClick={() => onDelClick(row.id)} >Delete</button>
+      renderCell: row => <IconButton onClick={() => onDelClick(row.id)} ><Delete color="error" /></IconButton>
     }
   ];
 

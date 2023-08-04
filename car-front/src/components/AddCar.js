@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Button, Stack, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 export default function AddCar(props) {
   const [open, setOpen]  = useState(false);
@@ -30,7 +30,7 @@ export default function AddCar(props) {
 
   return (
     <div>
-      <button onClick={handleOpen}>New Car</button>
+      <Stack mt={2} mb={2}><Button onClick={handleOpen} variant="contained">New Car</Button></Stack>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New Car</DialogTitle>
         <DialogContent>
@@ -41,8 +41,8 @@ export default function AddCar(props) {
           <input placeholder="Price" name="price" value={car.price} onChange={handleChange} />
         </DialogContent>
         <DialogActions>
-          <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleSave}>Save</button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSave}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>
