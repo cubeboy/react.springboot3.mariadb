@@ -32,7 +32,7 @@ export default function AddCar(props) {
     <div>
       <Stack mt={2} mb={2}><Button onClick={handleOpen} variant="contained">New Car</Button></Stack>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New Car</DialogTitle>
+        <DialogTitle>New car</DialogTitle>
         <DialogContent>
           <Stack spacing={2} mt={2}>
             <TextField autoFocus placeholder="Brand" variant="standard" name="brand" value={car.brand} onChange={handleChange} />
